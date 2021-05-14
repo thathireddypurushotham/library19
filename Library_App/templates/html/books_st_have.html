@@ -42,7 +42,22 @@
 			<td>{{i.Book_author}}</td>
 			<td>{{i.Issue_date}}</td>
 			<td>{{i.Expire_date}}</td>
-			<td>{{i.Fine}}</td>
+			<td>
+				<p>
+  				
+ 					 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					    check here
+					  </button>
+				</p>
+				<div class="collapse" id="collapseExample">
+					  <div class="card card-body">
+  				 You have {{i.Fine}} of fine.  
+  					</div>
+
+		    
+		  		
+			
+			</td>
 			<td><a class="confirm-delete btn btn-warning" href="{% url 'datadelete' i.id %}">Delete</a></td>
 		</tr>
 		{% endif %}

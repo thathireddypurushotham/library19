@@ -1,0 +1,40 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %}allnotes{% endblock %}
+
+{% block content %}
+<div class="text-center text-danger">
+	<br>
+	<span><i>All Students Fine Deails</i></span>
+	
+</div>
+<hr>
+
+<div class="container">
+	<table class="table table-bordered">
+		<input type="button" value="Go back!" onclick="history.back()" class="btn btn-info">
+		<tr class="bg bg-info">
+			<td>S.No</td>
+			<td>Student Id</td>
+			<td>Student_Name</td>
+			
+			<td>Fine</td>
+
+			<td>Delete</td>
+		{% for i in f %}
+		{% if i.issue_status is 1 %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{i.Rg_No}}</td>
+			<td>{{i.Name}}</td>	
+			<td>
+				{{i.Fine}}
+			</td>
+			<td><a class="confirm-delete btn btn-warning" href="{% url 'datadelete' i.id %}">Delete</a></td>
+		</tr>
+		{% endif %}
+		{% endfor %}
+	</table>
+</div>
+
+{% endblock %}

@@ -37,7 +37,7 @@ urlpatterns = [
     path('reqp/',views.requestform,name='pm'),
     path('gper/',views.adminpermissions,name='gperm'),
     path('eper/<int:k>/',views.updatepermissions,name='up'),
-
+    path('fine/',views.fine,name='fine'),
     
 
 ]

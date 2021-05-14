@@ -280,6 +280,11 @@ def books_st_have(rq):
 	return render(rq,'html/books_st_have.html',{'y':k2})
 
 
+def fine(rq):
+	fine1=st_admin_data.objects.all()
+	data=Books_Avail.objects.filter()
+	return render(rq,'html/fine.html',{'f':fine1})
+
 
 
 

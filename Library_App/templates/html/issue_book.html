@@ -35,7 +35,7 @@
 			
 		</tr>
 		{% for i in rc %}
-		{% if i.issue_status is 3 %}
+		{% if i.issue_status is 1 %}
 			<tr>
 
 				<td>{{forloop.counter}}</td>
@@ -44,7 +44,7 @@
 				<td>{{i.Book_name}}</td>
 				<td>{{i.Book_author}}</td>
 				
-				<td>{{i.Return_Date}}</td>
+				<td>{{i.Issue_date}}</td>
 
 
 				<td><a class="confirm-delete btn btn-warning" href="{% url 'datadelete' i.id %}">Delete</a></td>

@@ -38,6 +38,7 @@ urlpatterns = [
     path('gper/',views.adminpermissions,name='gperm'),
     path('eper/<int:k>/',views.updatepermissions,name='up'),
     path('fine/',views.fine,name='fine'),
+    path('issue_book/',views.issue_book,name='issue_book'),
     
 
 ]

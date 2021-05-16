@@ -44,19 +44,20 @@
       <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">Books Status</a>
        
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="{% url 'Books' %}">Issued Books</a>
+        <a class="dropdown-item" href="{% url 'issue_book' %}">Issued Books</a>
       <a class="dropdown-item" href="{% url 'books_return'%}">Return Books</a></div>
     </li>
+    <li class="nav-item" style='display:inline'>
+      <a class="nav-link" href="{% url 'fine' %}">Fines List</a><!-- <sub class="text-light">View<sup class="text-danger">{{d}}</sup></sub> -->
+    </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'Books' %}">Students Requests</a>
+      <a class="nav-link" href="{% url 'viewn' %}">Students Requests</a>
       
     </li>
      <li class="nav-item" style='display:inline'>
-      <a class="nav-link" href="{% url 'viewn' %}">Notifications</a><!-- <sub class="text-light">View<sup class="text-danger">{{d}}</sup></sub> -->
+      <a class="nav-link" href="#">Notifications</a><!-- <sub class="text-light">View<sup class="text-danger">{{d}}</sup></sub> -->
     </li>
-     <li class="nav-item" style='display:inline'>
-      <a class="nav-link" href="{% url 'fine' %}">Fines List</a><!-- <sub class="text-light">View<sup class="text-danger">{{d}}</sup></sub> -->
-    </li>
+     
     {% else %}
    {% if user.role == 1 %}
       <li class="nav-item">

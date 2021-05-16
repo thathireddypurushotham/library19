@@ -243,6 +243,12 @@ def books_return(request):
 	print(rc)
 	return render(request,'html/Books_return.html',{'rc':rc})
 
+def issue_book(request):
+	rc=st_admin_data.objects.all()
+	print(rc)
+	return render(request,'html/issue_book.html',{'rc':rc})
+
+
 def return_accept(rq,id):
 	rc=st_admin_data.objects.get(id=id)
 	rc.issue_status='4'

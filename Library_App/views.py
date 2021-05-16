@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Library_App.forms import UsForm,ComplaintForm,UtupForm,ChPwdForm,Books_AvailForm,Books_AvailForm_admin,Expire_date,Usperm
+from Library_App.forms import UsForm,ComplaintForm,UtupForm,ChPwdForm,Books_AvailForm,Books_AvailForm_admin,Expire_date,Usperm,ImForm
 from django.core.mail import send_mail
 from Library import settings
 from django.contrib import messages
@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 import sys
 from time import gmtime, strftime
 from datetime import date
+from django.core import mail
+
 
 
 # Create your views here.
@@ -69,17 +71,18 @@ def complaint(request):
 		return redirect('/')
 	form=ComplaintForm()
 	return render(request,'html/complaint.html',{'p':form})'''
-def updpf(request):
-	if request.method=="POST":
-		u=UtupForm(request.POST,instance=request.user.id)
-		i=ImForm(request.POST,request.FILES,instance=request.user.improfile)
+def updf(request):
+	if request.method == "POST":
+		u=UtupForm(request.POST,instance=request.user)
+		i=ImForm(request.POST,request.FILES,instance=request.user)
 		if u.is_valid() and i.is_valid():
 			u.save()
 			i.save()
 			return redirect('/pro')
-	u=UtupForm(instance=request.user.id)
-	i=ImForm(instance=request.user.improfile)
-	return render(request,'html/updateprofile.html',{'us':u,'imp':i})
+	u=UtupForm(instance=request.user)
+	i=ImForm(instance=request.user)
+	return render(request,'html/updateprofile.html',{'us':u,"imp":i})
+
 def Bookedit(up,id):
 	t= Books_Avail.objects.get(id=id)
 	if up.method=="POST":

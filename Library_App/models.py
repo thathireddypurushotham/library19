@@ -59,9 +59,9 @@ class Books_Avail(models.Model):
 	Book_count=models.IntegerField(default=0)
 	Book_Updatedcount=models.IntegerField(default=0)	
 
-# class ImProfile(models.Model):
-# 	g=[('M',"male"),('F',"female")]
-# 	age=models.IntegerField(default=10)
-# 	impf=models.ImageField(upload_to='profiles/',default="profile.jpg")
-# 	gender=models.CharField(max_length=20,choices=g)
-# 	uid=models.OneToOneField(User,on_delete=models.CASCADE)
+class ImProfile(models.Model):
+	g = [('M',"Male"),('F','Female')]
+	age = models.IntegerField(default=10)
+	impf = models.ImageField(upload_to='Profiles/',default="profile.png")
+	gender = models.CharField(max_length=10,choices=g)
+	uid = models.OneToOneField(User,on_delete=models.CASCADE)

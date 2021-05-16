@@ -29,14 +29,15 @@ class ComplaintForm(forms.ModelForm):
 	class Meta:
 		model=ComplaintBox
 		fields="__all__"
-# class ImForm(forms.ModelForm):
-# 	class Meta:
-# 		model=ImProfile
-# 		fields=['age','gender',"impf"]
-# 		widgets={
-# 		"age":forms.NumberInput(attrs={"class":"form-control","placeholder":"update age",}),
-# 		"gender":forms.Select(attrs={"class":"form-control","placeholder":"Select your gender",}),
-# 		}
+
+class ImForm(forms.ModelForm):
+	class Meta:
+		model=User
+		fields=['age','gender',"impf"]
+		widgets={
+		"age":forms.NumberInput(attrs={"class":"form-control","placeholder":"update age",}),
+		"gender":forms.Select(attrs={"class":"form-control","placeholder":"Select your gender",}),
+		}
 
 class UtupForm(forms.ModelForm):
 	class Meta:

@@ -1,6 +1,7 @@
 from django.urls import path
 from Library_App import views
 from django.contrib.auth import views as ad
+
 urlpatterns = [
     path('',views.home,name="hm"),
     path('pro/',views.profile,name='profile'),
@@ -12,7 +13,7 @@ urlpatterns = [
     path('rg/',views.regi,name="rg"),
     path('ds/',views.dashboard,name="dsh"),
     path('lgo/',ad.LogoutView.as_view(template_name='html/logout.html'),name="logo"),
-    path('updf/',views.updpf,name="upf"),
+    path('updf/',views.updf,name="upf"),
     path('ch/',views.cgf,name="cg"),
     path('rst/',ad.PasswordResetView.as_view(template_name="html/resetpass.html"),name="reset_password"),
     path('rst_done/',ad.PasswordResetDoneView.as_view(template_name='html/resetpassworddone.html'),name='password_reset_done'),

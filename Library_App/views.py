@@ -10,6 +10,9 @@ import sys
 from time import gmtime, strftime
 from datetime import date
 from django.core import mail
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+from django.http import HttpResponse
 
 
 
@@ -146,6 +149,17 @@ def sendrequest(rq):
 					d0 = date(int(l1[0]), int(l1[1]), int(l1[2]))
 					delta = d1 - d0
 					i.Fine=delta.days*2
+					if i.Fine>0:
+						subject='Fine Info'
+						body="Hi +{{rq.user.username}}+ Your fine amount is "
+						receiver=rq.user.email
+						sender=settings.EMAIL_HOST_USER
+						t=EmailMessage(subject,body,sender,[receiver])
+						t.send()
+						return HttpResponse[" Successfully_Sent"]
+
+
+
 					print(delta.days)
 
 					print(l)

@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
+                                <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
@@ -42,27 +42,6 @@
 
 
 
-<!-- Background image 
-<div class="container">
-    <div class="card col-md-6 mx-auto mt-5 shadow-lg">
-		<h3 class="text-center text-white bg-info border rounded p-2 my-2">LOGIN</h3>
-	<div class="card-body">
-		<form method="POST">
-			{% csrf_token %}
-			{{ form.as_p}} 
-			<input type="text" name="username" placeholder="User Name" class="form-control">
-			<input type="password" name="password" placeholder="Password" class="form-control my-4">
-			<div class="row">
-				<div class="col">
-					<input type="submit" value="LOGIN" class="btn btn-success col-sm">
-				</div>
-				 	<div class="col">
-						<a href="{% url 'rg' %}" class="btn btn-primary col-sm">New User</a>	
-					</div>
-				</div>
-			</form><br>
-			<a href="{% url 'reset_password' %}" class="btn btn-danger" >Forget Password ?</a>
-		</div>
-	</div>
+
  --></div></div>
 {% endblock %}

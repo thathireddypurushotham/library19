@@ -39,7 +39,11 @@ def regi(request):
 @login_required
 
 def dashboard(rq):
-	return render(rq,'html/dashboard.html')
+	l=[]
+	e2=Books_Avail.objects.all()
+	for i in e2:
+		l.append(i.Book_Updatedcount-i.Book_count)
+	return render(rq,'html/dashboard.html',{'t':e2 ,"a":l})
 
 
 def profile(request):

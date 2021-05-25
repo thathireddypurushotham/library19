@@ -5,6 +5,12 @@
 	$(document).on('click', '.confirm-delete', function(){
     return confirm('Are you sure you want to delete this?');
 })
+	$(document).on('click', '.confirm-accept', function( ){
+    return confirm('Are you sure you want to accept this book ?');
+})
+	$(document).on('click', '.confirm-edit', function(){
+    return confirm('Are you sure you want to Edit this book ?');
+})
 </script>
 <div clas="container">
 	<div class="card col-md-6 mx-auto mt-4">
@@ -39,7 +45,7 @@
 				<td>{{i.Book_name}}</td>
 				<td>{{i.Book_count}}</td>
 				<td>{{i.Book_author}}</td>
-				<td><a class="confirm-delete btn btn-warning" href="{% url 'Bookdelete' i.id %}">Delete</a><a class="confirm-delete btn btn-dark ml-4" href="{% url 'Bookedit' i.id %}">Edit</a></td></td>
+				<td><a class="confirm-delete btn btn-warning" href="{% url 'Bookdelete' i.id %}">Delete</a><a class="confirm-edit btn btn-dark ml-4" href="{% url 'Bookedit' i.id %}">Edit</a></td></td>
 				</tr>
 				{% endfor %}
 			</table>

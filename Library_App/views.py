@@ -122,6 +122,7 @@ def Books_AvailF(rq):
 				m=i.Book_count+int(k)
 				i.Book_count=m
 				i.Book_Updatedcount=i.Book_Updatedcount+int(k)
+				i.Books_Rem=i.Book_Updatedcount-i.Book_count
 				i.save()
 				f=1
 		if f==0:

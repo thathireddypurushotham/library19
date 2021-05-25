@@ -57,7 +57,8 @@ class Books_Avail(models.Model):
 	Book_name=models.CharField(max_length=120, unique=True)
 	Book_author=models.CharField(max_length=120,default="")
 	Book_count=models.IntegerField(default=0)
-	Book_Updatedcount=models.IntegerField(default=0)	
+	Book_Updatedcount=models.IntegerField(default=0)
+	Book_Rem=models.IntegerField(default=0)	
 
 class ImProfile(models.Model):
 	g = [('M',"Male"),('F','Female')]

@@ -1,6 +1,7 @@
 {% extends 'html/base.html' %}
 {% block title %}Dash{% endblock %}
 {% block content %}
+
 <div clas="container">
 	<div class="card col-md-6 mx-auto mt-4">
 		<h3>Hi Welcome {{user.username}}</h3>
@@ -21,15 +22,14 @@
 				<td>{{i.Book_name}}</td>
 				<td>{{i.Book_count}}</td>
 				<td>{{i.Book_Updatedcount}}</td>
-				
+				<td>{{i.Book_Updatedcount}}</td>
 				<td>{{i.Book_author}}</td>
 				
-				{% for j in a %}
-				<td>{{j}} </td>
-				{% endfor %}
+
 				{% endfor %}				
 				</tr>
-
+<br>
 			</table>
 		</div>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

@@ -1,9 +1,56 @@
 {% extends 'html/base.html' %}
 {% block title %}Available_books{% endblock %}
 {% block content %}
+<div clas="container">
+	<div class="card col-md-6 mx-auto mt-4">
+		<h3>Hi Welcome {{user.username}}</h3>
+	</div>	
+
+<!--chatrs--><script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js"></script>
+<div class="container">
+	<canvas id="myChart" width="400" height="155"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [{% for i in t %}'{{i.Book_name}}',{% endfor %}],
+        datasets: [{
+            label: 'Books in chart',
+            data: [{% for i in t %}'{{i.Book_count}}',{% endfor %}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86,1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+</div>
+
 <script>
 	$(document).on('click', '.confirm-delete', function(){
-    return confirm('Are you sure you want to delete this?');
+    return confirm('Are you sure you want to delete this ?');
 })
 	$(document).on('click', '.confirm-accept', function( ){
     return confirm('Are you sure you want to accept this book ?');
@@ -12,10 +59,7 @@
     return confirm('Are you sure you want to Edit this book ?');
 })
 </script>
-<div clas="container">
-	<div class="card col-md-6 mx-auto mt-4">
-		<h3>Hi Welcome {{user.username}}</h3>
-	</div>	
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="card col-md-3 mt-3">
@@ -32,7 +76,7 @@
 				<input type="submit" value="Add" class="text-center bg-info form-control my-2" name="">
 			</form>
 		</div>
-<div class=" mx-3 card col-md-8 mt-3"><h4 class="p-3 bg-info text-center mt-3 border rounded">Available Books</h4>
+<div class=" card col-md-8 mt-3"><h4 class="p-3 bg-info text-center mt-3 border rounded">Available Books</h4>
 			<table class="table table-borderless table-hover">
 				<tr class="bg-dark text-light">
 					<td>Book_Name</td>

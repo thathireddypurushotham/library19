@@ -1,17 +1,18 @@
+
 {% extends 'html/base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
 {% load static %}
 <!-- Background image -->
-
 <div class="bg-image" 
-   style="background-image: url('https://wp.stanforddaily.com/wp-content/uploads/2018/05/building-aisle-library-public-library-inventory-bookselling-24143-pxhere.com_-995x498.jpg');
+   style="background-image: url('https://img.freepik.com/free-vector/close-up-minimalist-honeycomb-background-design_23-2148386679.jpg?size=626&ext=jpg');
    height: 100%">
 
-<div class="jumbotron bg-secondary text-center text-white mt-5" style="margin-bottom:0">
+
+<div class="jumbotron bg-secondary text-center text-white mt-3" style="margin-bottom:0">
   <h1>AITS LIBRARY</h1>
 </div>
-
+<br><br>
 <div id="demo" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ul class="carousel-indicators">
@@ -23,19 +24,18 @@
   </ul>
 
   <!-- The slideshow -->
-  <div class="container p-3 my-3 bg-dark text-white">
     <div class="carousel-inner">
       <div class="carousel-item  active" >
-        <img src="{% static 'images/libnew.jpg' %}" class="mx-auto d-block" style="width:50%">
+        <img src="{% static 'images/libnew.jpg' %}" class="mx-auto d-block" style="width:60%">
       </div>
       <div class="carousel-item">
-        <img src="{% static 'images/libnew1.jpg' %}" class="mx-auto d-block" style="width:50%">
+        <img src="{% static 'images/libnew1.jpg' %}" class="mx-auto d-block" style="width:60%">
              </div>
              <div class="carousel-item">
-              <img src="{% static 'images/libnew2.jpg' %}" class="mx-auto d-block" style="width:50%">
+              <img src="{% static 'images/libnew2.jpg' %}" class="mx-auto d-block" style="width:60%">
              </div>                      
              <div class="carousel-item">
-              <img src="{% static 'images/libnew3.jpg' %}" alt="" class="mx-auto d-block" style="width:50%">
+              <img src="{% static 'images/libnew3.jpg' %}" alt="" class="mx-auto d-block" style="width:60%">
              </div>
          </div>
 
@@ -47,5 +47,5 @@
           <span class="carousel-control-next-icon"></span>
          </a>
      </div></div>
-   </div>
+   </div><br>
 {% endblock %}

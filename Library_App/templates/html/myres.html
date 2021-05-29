@@ -36,13 +36,13 @@
 					
 					<!-- <td>{{i.is_status}}</td> -->
 					{% if i.issue_status is 0 %}
-					<td class="bg bg-warning">pending</td>
+					<td class="bg bg-warning text-center">pending</td>
 					{% elif i.issue_status is 1 %}
-					<td class="bg bg-success">Acceptd</td>
+					<td class="bg bg-success text-center">Accepted</td>
 					{% elif i.issue_status is 2 %}
-					<td class="bg bg-danger">Rejected</td>
+					<td class="bg bg-danger text-center">Rejected</td>
 					{% else %}
-					<td class="bg bg-danger">Notavailble</td>
+					<td class="bg bg-danger text-center">Notavailble</td>
 					{% endif %}
 					<td><a class="confirm-delete" href="{% url 'datadelete' i.id %}">Delete</a></td>
 					

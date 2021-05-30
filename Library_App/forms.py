@@ -62,11 +62,14 @@ class ChPwdForm(PasswordChangeForm):
 class Books_AvailForm(forms.ModelForm):
 	class Meta:
 		model=st_admin_data
-		fields=['Book_name','Book_author']
+		fields=['Book_name','Book_author','Book_Edition']
 		widgets={"Book_name":forms.TextInput(attrs={"class":"form-control "
 			,"placeholder":"Enter Book name","name":"Book_name","required":True}),
+		
 		"Book_author":forms.TextInput(attrs={"class":"form-control "
 			,"placeholder":"Enter Book Author","required":True}),
+		"Book_Edition":forms.TextInput(attrs={"class":"form-control "
+			,"placeholder":"Enter Book_Edition","required":True}),
 		"Rg_No":forms.TextInput(attrs={"class":"form-control "
 			,"placeholder":"Enter Registration Number","required":True}),
 		"Branch":forms.TextInput(attrs={"class":"form-control "
@@ -76,11 +79,13 @@ class Books_AvailForm(forms.ModelForm):
 class Books_AvailForm_admin(forms.ModelForm):
 	class Meta:
 		model=Books_Avail
-		fields=['Book_name','Book_author','Book_count']
+		fields=['Book_name','Book_author','Book_Edition','Book_count']
 		widgets={"Book_name":forms.TextInput(attrs={"class":"form-control "
 			,"placeholder":"Enter Book name","name":"Book_name","required":True}),
 		"Book_author":forms.TextInput(attrs={"class":"form-control "
 			,"placeholder":"Enter Book Author","name":"Book_author","required":True}),
+		"Book_Edition":forms.TextInput(attrs={"class":"form-control "
+			,"placeholder":"Enter Book_Edition","required":True}),
 		"Book_count":forms.NumberInput(attrs={"class":"form-control "
 			,"placeholder":"No. of Books","name":"Book_count","required":True})}
 class Expire_date(forms.ModelForm):

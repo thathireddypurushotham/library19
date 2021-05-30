@@ -25,6 +25,7 @@
 					<td>Book_Name</td>
 					<td>Book_count</td>
 					<td>Book_Author</td>
+					<td>Book_Edition</td>
 					<td>Action</td>
 				</tr>
 					{% for i in t %}
@@ -32,6 +33,7 @@
 				<td>{{i.Book_name}}</td>
 				<td>{{i.Book_count}}</td>
 				<td>{{i.Book_author}}</td>
+				<td>{{i.Book_Edition}}</td>
 				<td><a class="confirm-delete btn btn-warning" href="{% url 'Bookdelete' i.id %}">Delete</a><a class="confirm-edit btn btn-dark ml-4" href="{% url 'Bookedit' i.id %}">Edit</a></td></td>
 				</tr>
 				{% endfor %}

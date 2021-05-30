@@ -39,6 +39,7 @@ class st_admin_data(models.Model):
 	issue_status=models.IntegerField(default=0)
 	Book_name=models.CharField(max_length=120)
 	Book_author=models.CharField(max_length=120)
+	Book_Edition=models.CharField(max_length=120)
 	Book_count=models.IntegerField(default=0)
 	Issue_date=models.DateField(blank=True,null=True)
 	Expire_date=models.DateField(blank=True,null=True)
@@ -56,6 +57,7 @@ class st_admin_data(models.Model):
 class Books_Avail(models.Model):
 	Book_name=models.CharField(max_length=120, unique=True)
 	Book_author=models.CharField(max_length=120,default="")
+	Book_Edition=models.CharField(max_length=120)
 	Book_count=models.IntegerField(default=0)
 	Book_Updatedcount=models.IntegerField(default=0)
 	Book_Rem=models.IntegerField(default=0)	
@@ -64,5 +66,5 @@ class ImProfile(models.Model):
 	g = [('M',"Male"),('F','Female')]
 	age = models.IntegerField(default=10)
 	impf = models.ImageField(upload_to='Profiles/',default="profile.png")
-	gender = models.CharField(max_length=10,choices=g)
+	gender = models.CharField(max_length=10,choices=g,default="Male")
 	uid = models.OneToOneField(User,on_delete=models.CASCADE)

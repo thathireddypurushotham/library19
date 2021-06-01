@@ -12,6 +12,7 @@ class User(AbstractUser):
 	t = (
 		(1,'student'),
 		(2,'guest'),
+		(3,'Staff'),
 		)
 	r=[('CSE','CSE'),('ECE','ECE'),('CIVIL','CIVIL'),('Mechanical','Mechanical'),('EEE','EEE'),('MBA','MBA')]
 	role = models.IntegerField(default=2,choices=t)
@@ -39,7 +40,7 @@ class st_admin_data(models.Model):
 	issue_status=models.IntegerField(default=0)
 	Book_name=models.CharField(max_length=120)
 	Book_author=models.CharField(max_length=120)
-	Book_Edition=models.CharField(max_length=120)
+	Book_Edition=models.CharField(max_length=120,default="")
 	Book_count=models.IntegerField(default=0)
 	Issue_date=models.DateField(blank=True,null=True)
 	Expire_date=models.DateField(blank=True,null=True)
@@ -56,11 +57,20 @@ class st_admin_data(models.Model):
 	#p_body=models.CharField(max_length=1000)
 class Books_Avail(models.Model):
 	Book_name=models.CharField(max_length=120, unique=True)
+	def __str__(self):
+			return self.Book_name
+	class Meta:
+		db_table ="Library_App_books_avail"
+
 	Book_author=models.CharField(max_length=120,default="")
-	Book_Edition=models.CharField(max_length=120)
+	Book_Edition=models.CharField(max_length=120,default="")
+
 	Book_count=models.IntegerField(default=0)
 	Book_Updatedcount=models.IntegerField(default=0)
-	Book_Rem=models.IntegerField(default=0)	
+	Book_Rem=models.IntegerField(default=0)
+
+	
+
 
 class ImProfile(models.Model):
 	g = [('M',"Male"),('F','Female')]

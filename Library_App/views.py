@@ -134,6 +134,9 @@ def Books_AvailF(rq):
 				q.save()
 	e=Books_AvailForm_admin()
 	e2=Books_Avail.objects.all()
+
+	
+
 	return render(rq,"html/Books_Avail.html",{'t':e2,'t1':e})
 @login_required
 def sendrequest(rq):

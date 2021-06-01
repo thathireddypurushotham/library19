@@ -61,7 +61,7 @@
      
      
     {% else %}
-   {% if user.role == 1 %}
+   {% if user.role == 1 or user.role == 3 %}
       <li class="nav-item">
       <a class="nav-link" href="{% url 'hm' %}">Home</a>
     </li>
@@ -76,20 +76,19 @@
       <a class="nav-link" href="{% url 'studentbooks_avail' %}">Books Available</a>
       
     </li>
-     <li class="nav-item">
-      <a class="nav-link" href="{% url 'bk' %}">Books u have</a>
-      
-    </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'send_request' %}">Make Requests</a>
       
     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="{% url 'bk' %}">Books u have</a>
+      
+    </li>
+    
     <li class="nav-item">
         <a class="nav-link" href="{% url 'myreq' %}">View Myreq</a>
       </li>
-     <li class="nav-item">
-      <a class="nav-link" href="{% url 'Books' %}">Notifications</a>
-    </li>
+    
     {% else %}
     <li class="nav-item">
       <a class="nav-link" href="{% url 'hm' %}">Home</a>
@@ -123,7 +122,7 @@
     {% else %}
   <li class="dropdown">
     <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">
-      {% if user.role == 1 or user.is_superuser %}
+      {% if user.role == 1 or user.is_superuser or user.role == 3 %}
       {{user.username}}
        {% else %}
        Guest

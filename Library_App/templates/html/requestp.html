@@ -7,11 +7,11 @@
       <div class="card-body">
          <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="text" name="rollno" class="form-control my-3" placeholder="Enter your Roll Number">
+            <input type="text" name="rollno" class="form-control my-3" placeholder="Enter your ID">
              <div class="form-group">
-                  <label for="sel1">Select Your Department</label>
+                 
                   <select class="form-control" id="sel1" name="sellist1">
-                     <option>Other</option>
+                     <option>Select Your Department</option>
                     <option>CSE</option>
                     <option>ECE</option>
                     <option>CIVIL</option>
@@ -21,7 +21,8 @@
                </div>
             <input type="email" name="email" class="form-control my-4" placeholder="Enter your Mail ID">
             <input type="number" name="pn" class="form-control my-4" placeholder="Enter your Phone Number">
-            <h5 class="text-info">Insert Id card image/file to Authenticate</h5>
+            <h5 class="text-info">Insert ID Card 
+            (jpeg,png,pdf)</h5>
             <input type="file" name="id" class="form-control my-4" placeholder="Insert ID card">
             <input type="submit" value="Send" class="btn btn-info text-white  col-sm">  
 

@@ -1,6 +1,22 @@
 {% extends 'html/base.html' %}
 {% block title %}Dash{% endblock %}
 {% block content %}
+
+{% if user.role == 2 %}
+<div class="container">
+    <br><br>
+    <div  style="margin-top: 100px;">
+        <div class="sm-10 mr-5 ml-5 card b" style="">
+          <div class="card-body">
+            <h3 class="card-title  text-white bg-info text-center"> welcome "{{user.username}}" you are Guest  now.
+</h3>
+<h4 class="text-center">Request Role for Accessing Books info and all.</h4>
+<br>
+<h5 class="text-center">"Click on 
+'Make Permission' Tab on the Navbar
+ for Requesting"</h5>
+{% endif %}
+
 {% if user.role == 1 %}
 
 <div clas="container">
@@ -48,7 +64,7 @@ var myChart = new Chart(ctx, {
 });</script></div></div>
 {% endif %}
 
-{% if user.role == 2 %}
+{% if user.role == 3 %}
 
 <div clas="container">
 	

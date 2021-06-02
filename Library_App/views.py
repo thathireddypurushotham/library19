@@ -279,19 +279,41 @@ def return_accept(rq,id):
 	rc.issue_status='4'
 	rc.save()
 	return redirect('/books_return')
-def requestform(rq):
-	e2=User.objects.get(id=rq.user.id)
-	if rq.method=='POST':
-		print(e2)
-		e2.Rg_No=rq.POST['rollno']
-		e2.Branch=rq.POST['dept']
-		e2.email=rq.POST['email']
-		e2.address=rq.POST['ad']
-		e2.phone_no=rq.POST['pn']
-		e2.save()
-		return redirect('/lg')
-	return render(rq,'html/requestp.html')
+# def requestform(rq):
+# 	e2=User.objects.get(id=rq.user.id)
+# 	if rq.method=='POST':
+# 		print(e2)
+# 		e2.Rg_No=rq.POST['rollno']
+# 		e2.Branch=rq.POST['dept']
+# 		e2.email=rq.POST['email']
+# 		e2.address=rq.POST['ad']
+# 		e2.phone_no=rq.POST['pn']
+# 		e2.save()
+# 		return redirect('/lg')
+# 	return render(rq,'html/requestp.html')
 
+def requestform(request):
+	if request.method=="POST":
+		
+		e=request.POST.get('email')
+		ut=request.POST.get('utype')
+		ud=request.POST.get('uid')
+		ms=request.POST.get('msg')
+		f=request.FILES['fe']
+		a="Hi welcome" "Your Requested Dept."  +ut
+		t = EmailMessage("UserRole Change",a,settings.EMAIL_HOST_USER,[settings.ADMINS[0][1],e])
+	
+		t.attach(f.name,f.read(),f.content_type)
+		t.send()
+		if t==1:
+			return redirect('/reqp')
+		else:
+			return redirect('/lg')
+
+
+
+	
+	return render(request,'html/requestp.html')
 def adminpermissions(request):
 	ty=User.objects.all()
 	return render(request,'html/adminpermissions.html',{'q':ty})

@@ -81,7 +81,7 @@ class Books_AvailForm_admin(forms.ModelForm):
 		model=Books_Avail
 		fields=['Book_name','Book_author','Book_Edition','Book_count']
 		widgets={"Book_name":forms.TextInput(attrs={"class":"form-control "
-			,"placeholder":"Enter Book name","name":"Book_name","required":True}),
+			,"placeholder":"Enter Book name","name":"Book_name","id":"tags","required":True}),
 		"Book_author":forms.TextInput(attrs={"class":"form-control "
 			,"placeholder":"Enter Book Author","name":"Book_author","required":True}),
 		"Book_Edition":forms.TextInput(attrs={"class":"form-control "

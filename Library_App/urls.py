@@ -20,7 +20,7 @@ urlpatterns = [
     path('rst_done/',ad.PasswordResetDoneView.as_view(template_name='html/resetpassworddone.html'),name='password_reset_done'),
     path('rst_confirm/<uidb64>/<token>/',ad.PasswordResetConfirmView.as_view(template_name='html/resetconfirm.html'),name='password_reset_confirm'),
     path('ba/',views.Books_AvailF,name='books_avail'),
-    path('sr/',views.sendrequest,name='send_request'),
+    path('sr/<int:id>',views.sendrequest,name='send_request'),
     path('bas/',views.studentbooks_avail,name='studentbooks_avail'),
     path('myreq/',views.myreq,name='myreq'),
     path('notedelete/<str:id>',views.datadelete,name="datadelete"),
@@ -40,4 +40,5 @@ urlpatterns = [
     path('eper/<int:k>/',views.updatepermissions,name='up'),
     path('fine/',views.fine,name='fine'),
     path('issue_book/',views.issue_book,name='issue_book'),
+    path('aut/',views.autocomplete,name='autocomplete'),
 ]

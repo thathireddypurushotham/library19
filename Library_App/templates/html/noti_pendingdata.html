@@ -53,7 +53,7 @@
 			{% elif i.issue_status is 2 %}
 			<td class="bg-danger">Rejected</td>
 			{% else %}
-			<td class="bg-danger">Rejected</td>
+			<td class="bg-info">Returned</td>
 			{% endif %}
 			<td><a class="confirm-delete btn btn-warning" href="{% url 'datadelete' i.id %}">Delete</a></td>
 		</tr>

@@ -8,12 +8,14 @@ from django.contrib.auth.models import User
 from Library_App.models import Books_Avail,st_admin_data,AbstractUser,User
 from django.contrib.auth.decorators import login_required
 import sys
+import datetime
 from time import gmtime, strftime
-from datetime import date
+from datetime import date,timedelta
 from django.core import mail
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse
 
 
 
@@ -28,11 +30,23 @@ def contact(request):
 	return render(request,'html/contact.html')
 
 def regi(request):
+	a=User.objects.all()
+	l=[]
+	for i in a:
+		l.append(i.Rg_No)
+	print(l)
 	if request.method=="POST":
 		t=UsForm(request.POST)
-		if t.is_valid():
-			t.save()
-			return redirect('/lg')
+		q=request.POST['rg']
+		print(q)
+		if q not in l:
+			if t.is_valid():
+				s=t.save(commit=False)
+				s.Rg_No=q
+				s.save()
+				return redirect('/lg')
+		else:
+			return HttpResponse('This user is already exist Please enter valid credentials')
 	p=UsForm()
 	return render(request,'html/register.html',{'u':p})
 
@@ -116,6 +130,8 @@ def Books_AvailF(rq):
 		k=rq.POST['Book_count']
 		a=rq.POST['Book_author']
 		b=rq.POST['Book_name']
+		showtime = strftime("%Y-%m-%d")
+		now = datetime.datetime.now().strftime('%H:%M:%S')
 		notes=Books_Avail.objects.all()
 		f=0
 		for i in notes:
@@ -131,7 +147,9 @@ def Books_AvailF(rq):
 			if e.is_valid():
 				q=e.save(commit=False)
 				q.Book_Updatedcount=k
+				q.Book_Enterdate=showtime
 				q.up_id=rq.user.id
+				q.Time=now
 				q.save()
 	e=Books_AvailForm_admin()
 	e2=Books_Avail.objects.all()
@@ -141,29 +159,40 @@ def Books_AvailF(rq):
 	return render(rq,"html/Books_Avail.html",{'t':e2,'t1':e})
 @login_required
 def sendrequest(rq,id):
-	m= Books_Avail.objects.get(id=id)
-	if rq.method=="POST":
-		a=rq.POST['Book_name']
-		c=rq.POST['Book_author']
-		
-		
-		print(a)
-		book_name=[]
-		e=Books_AvailForm(rq.POST)
-		notes=Books_Avail.objects.all()
-		for i in notes:
-			if i.Book_name==a:
-				k=i.Book_count
-		print(book_name)
+	s=st_admin_data.objects.filter(uid_id=rq.user.id)
+	count=0
+	for i in s:
+		if i.issue_status==1:
+			count=count+1
+	print(count)
+	if count>2:
+		return HttpResponse('You have exceded the book limit Please contact librarian')
+	else:
 
-		if e.is_valid():
-			q=e.save(commit=False)
-			q.uid_id=rq.user.id
-			q.Book_count=k
-			q.Name=rq.user.username
-			q.Rg_No=rq.user.Rg_No
-			q.Branch=rq.user.Branch
-			q.save()
+		m= Books_Avail.objects.get(id=id)
+		if rq.method=="POST":
+			a=rq.POST['Book_name']
+			c=rq.POST['Book_author']
+			
+			
+			print(a)
+			book_name=[]
+			e=Books_AvailForm(rq.POST)
+			notes=Books_Avail.objects.all()
+			for i in notes:
+				if i.Book_name==a:
+					k=i.Book_count
+			print(book_name)
+
+			if e.is_valid():
+				q=e.save(commit=False)
+				q.uid_id=rq.user.id
+				q.Book_count=k
+				q.Name=rq.user.username
+				q.Rg_No=rq.user.Rg_No
+				q.Branch=rq.user.Branch
+				q.save()
+				return redirect('/myreq')
 
 		
 	e=Books_AvailForm(instance=m)
@@ -211,15 +240,6 @@ def accepting(req):
 	return render(req,'html/noti_acceptingdata.html',{'p':pending2})
 
 def acceptadmin(req,id):
-	if req.method=='POST':
-		ac=st_admin_data.objects.get(id=id)
-		a=req.POST.get('issue')
-		b=req.POST.get('Expire')
-		ac.Issue_date=a
-		ac.Expire_date=b
-		ac.save()
-		return redirect('/notipending')
-	else:
 		ac=st_admin_data.objects.get(id=id)
 		nam=ac.Book_name
 		k=Books_Avail.objects.get(Book_name=nam)
@@ -228,10 +248,14 @@ def acceptadmin(req,id):
 			m=m-1
 			k.Book_count=m
 			ac.Book_count=m
+			showtime = strftime("%Y-%m-%d")
+			days_after = (date.today()+timedelta(days=30)).isoformat()
+			ac.Issue_date=showtime
+			ac.Expire_date=days_after
 			ac.issue_status='1'
 			ac.save()
 			k.save()
-			return render(req,'html/expiredate.html')
+			return redirect('/notipending')
 		else:
 			ac.issue_status='2'
 			ac.save()
@@ -258,27 +282,29 @@ def books_return(request,id):
 		print(showtime)
 		i.Return_Date=showtime
 		l=str(showtime).split("-")
-		l1=str(i.Expire_date).split("-")
+		l1=str(i.Issue_date).split("-")
 		d1 = date(int(l[0]), int(l[1]), int(l[2]))
 		d0 = date(int(l1[0]), int(l1[1]), int(l1[2]))
-		delta = d1 - d0
-		
-		i.Fine=delta.days*2
-		if i.Fine>0:
-			subject='Fine Info'
-			body="Hi +{{request.user.username}}+ Your fine amount is "
-			receiver=request.user.email
-			sender=settings.EMAIL_HOST_USER
-			t=EmailMessage(subject,body,sender,[receiver])
-			t.send()
-						# return httpResponse(" Successfully_Sent")
+		d = d1 - d0
+		delta=d.days-30
+		if delta>0:
+
+			i.Fine=delta*2
+			if i.Fine>0:
+				subject='Fine Info'
+				body="Hi +{{request.user.username}}+ Your fine amount is "
+				receiver=request.user.email
+				sender=settings.EMAIL_HOST_USER
+				t=EmailMessage(subject,body,sender,[receiver])
+				t.send()
+							# return httpResponse(" Successfully_Sent")
 
 
 
-			print(delta.days)
+				print(delta.days)
 
-			print(l)
-			i.save()
+				print(l)
+	i.save()
 
 
 	return redirect('/books_st_have')
@@ -287,6 +313,9 @@ def issue_book(request):
 	rc=st_admin_data.objects.all()
 	print(rc)
 	return render(request,'html/issue_book.html',{'rc':rc})
+def book_return(request):
+	rc=st_admin_data.objects.all()
+	return render(request,'html/return_book.html',{'rc':rc})
 
 
 def return_accept(rq,id):
@@ -308,18 +337,23 @@ def return_accept(rq,id):
 # 	return render(rq,'html/requestp.html')
 
 def requestform(request):
+	e2=User.objects.get(id=request.user.id)
 	if request.method=="POST":
-		
+		e2.Rg_No=request.POST['ID']
+		e2.Branch=request.POST['utype']
+		e2.email=request.POST['email']
+		e2.phone_no=request.POST['pn']
 		e=request.POST.get('email')
 		ut=request.POST.get('utype')
 		ud=request.POST.get('uid')
 		ms=request.POST.get('msg')
 		f=request.FILES['fe']
-		a="Hi welcome" "Your Requested Dept."  +ut
+		a="Hi, This is "+request.user.username+"My Dept. is" +ut+"Please verify my details and update my role as requested below"
 		t = EmailMessage("UserRole Change",a,settings.EMAIL_HOST_USER,[settings.ADMINS[0][1],e])
 	
 		t.attach(f.name,f.read(),f.content_type)
 		t.send()
+		e2.save()
 		if t==1:
 			return redirect('/reqp')
 		else:

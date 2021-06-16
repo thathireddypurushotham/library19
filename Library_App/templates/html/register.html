@@ -9,6 +9,12 @@
 			<form method="POST">
 				{% csrf_token %}
 				<table class="table table-borderless">
+					<tr>
+					<td>
+					<input type="text"  class="form-control" name="rg" placeholder="Enter your ID"></input>
+				</td>
+				</tr>
+
 					{% for k in u %}
 					<tr>
 						<td>
@@ -16,7 +22,8 @@
 						</td>
 					</tr>
 					{% endfor %}
-				</table>
+					
+							</table>
 				<div class="row">
 						
 						<div class="col">

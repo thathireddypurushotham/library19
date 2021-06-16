@@ -64,10 +64,12 @@ class Books_Avail(models.Model):
 
 	Book_author=models.CharField(max_length=120,default="")
 	Book_Edition=models.CharField(max_length=120,default="")
-
+	Book_Category=models.CharField(max_length=120,default="")
 	Book_count=models.IntegerField(default=0)
 	Book_Updatedcount=models.IntegerField(default=0)
 	Book_Rem=models.IntegerField(default=0)
+	Book_Enterdate=models.DateField(blank=True,null=True)
+	Time=models.CharField(max_length=120,default="")
 
 	
 

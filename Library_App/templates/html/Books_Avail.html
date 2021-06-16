@@ -19,13 +19,15 @@
 				<input type="submit" value="Add" class="text-center bg-info form-control my-2" name="">
 			</form>
 		</div>
-<div class=" card col-md-8 mt-3"><h4 class="p-3 bg-info text-center mt-3 border rounded">Available Books</h4>
+<div class=" card col-md-9 mt-3"><h4 class="p-3 bg-info text-center mt-3 border rounded">Available Books</h4>
 			<table class="table table-borderless table-hover">
 				<tr class="bg-dark text-light">
 					<td>Book_Name</td>
 					<td>Book_count</td>
 					<td>Book_Author</td>
 					<td>Book_Edition</td>
+					<td>Book_Category</td>
+					<td>Books_EntryDateAndTime</td>
 					<td>Action</td>
 				</tr>
 					{% for i in t %}
@@ -34,7 +36,9 @@
 				<td>{{i.Book_count}}</td>
 				<td>{{i.Book_author}}</td>
 				<td>{{i.Book_Edition}}</td>
-				<td><a class="confirm-delete btn btn-warning" href="{% url 'Bookdelete' i.id %}">Delete</a><a class="confirm-edit btn btn-dark ml-4" href="{% url 'Bookedit' i.id %}">Edit</a></td></td>
+				<td>{{i.Book_Category}}</td>
+				<td>{{i.Book_Enterdate}}::<span class="bg-warning">{{i.Time}}</span></td>
+				<td><!-- <a class="confirm-delete btn btn-warning" href="{% url 'Bookdelete' i.id %}">Delete</a> --><a class="confirm-edit btn btn-warning ml-4" href="{% url 'Bookedit' i.id %}">Edit</a></td></td>
 				</tr>
 				{% endfor %}
 			</table>

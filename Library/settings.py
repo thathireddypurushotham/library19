@@ -130,10 +130,10 @@ LOGIN_REDIRECT_URL='dsh'
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER='farmekart@gmail.com'
-EMAIL_HOST_PASSWORD='farmer@123'
+EMAIL_HOST_USER='aitslibrarytpt@gmail.com'
+EMAIL_HOST_PASSWORD='aitslibrary'
 
-ADMINS = [('admin','farmekart@gmail.com')] 
+ADMINS = [('admin','aitslibrarytpt@gmail.com')] 
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'App/static/images/')

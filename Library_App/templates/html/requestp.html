@@ -12,7 +12,7 @@
         <h3>User Role Request Form</h3>
         {% csrf_token %}
         <input type="text" name="uname" placeholder="Enter Username" class="form-control my-2" value="{{request.user.username}}" readonly>
-         <input type="number" name="ID" placeholder="Enter your ID" class="form-control my-2" value="ID">
+         <input type="text" name="ID" placeholder="Enter your ID" class="form-control my-2" value="ID">
         <input type="email" name="email" placeholder="Enter your Mail ID" class="form-control my-2" value="email">
          <input type="number" name="pn" class="form-control my-4" placeholder="Enter your Phone Number">
         <select name="utype" class="form-control my-2">

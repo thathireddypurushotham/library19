@@ -31,8 +31,6 @@
 			<td>Issue_Date</td>
 			<td>expire_date</td>
 			<td>Fine</td>
-
-			<td>Delete</td>
 			<td>Action</td>
 		</tr>
 		{% for i in y %}
@@ -59,7 +57,6 @@
 		  		
 			
 			</td>
-			<td><a class="confirm-delete btn btn-warning" href="{% url 'datadelete' i.id %}">Delete</a></td>
 			{% if i.issue_status == 3 %}
 			<td class="bg-danger">Returned</td>
 			{% else %}
